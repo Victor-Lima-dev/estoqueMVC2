@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj": {}
+    "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj": {
+    "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj",
+        "projectUniqueName": "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj",
         "projectName": "estoqueMVC2",
-        "projectPath": "C:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj",
+        "projectPath": "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj",
         "packagesPath": "C:\\Users\\Vitor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\obj\\",
+        "outputPath": "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -21,7 +21,6 @@
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,6 +38,26 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
