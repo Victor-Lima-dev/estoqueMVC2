@@ -107,7 +107,7 @@ namespace estoqueMVC2.Controllers
         // POST: Produtos/Editar/{id}, assincrono
         [HttpPost("Editar/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditarT(int id, Produto produto)
+        public async Task<IActionResult> Editar(int id, Produto produto)
         {
             if (id != produto.ProdutoId)
             {

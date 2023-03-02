@@ -19,6 +19,7 @@
                 <td>@produto.Preco</td>
                 <td>@produto.Categoria</td>
                 <td><a asp-action="Detalhes" asp-route-id="@produto.ProdutoId">Detalhes</a></td>
+                <td><a asp-action="Editar" asp-route-id="@produto.ProdutoId">Editar</a></td>
             </tr>
         }
     </tbody>

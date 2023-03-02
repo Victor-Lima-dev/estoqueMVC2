@@ -6,7 +6,7 @@
 
 <h1>Editar Produto</h1>
 
-<form asp-action="EditarT" asp-route-id="@Model.ProdutoId" method="post">
+<form asp-action="Editar" asp-route-id="@Model.ProdutoId" method="post">
     <div class="form-group">
         <label asp-for="Nome"></label>
         <<input asp-for="Nome" class="form-control" />
@@ -27,7 +27,7 @@
 {
     <option value="@categoria">@categoria</option>
 }</select>
-
+    <input type="hidden" asp-for="ProdutoId" />
     <button type="submit" class="btn btn-primary">Salvar</button>
     <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
 </form>
