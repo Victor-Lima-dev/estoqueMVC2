@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj": {}
+    "C:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj": {
+    "C:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj",
+        "projectUniqueName": "C:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj",
         "projectName": "estoqueMVC2",
-        "projectPath": "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj",
+        "projectPath": "C:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\estoqueMVC2.csproj",
         "packagesPath": "C:\\Users\\Vitor\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\obj\\",
+        "outputPath": "C:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -21,6 +21,7 @@
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -54,6 +55,8 @@
               "version": "[7.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.3, )"
             }
