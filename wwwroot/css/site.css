@@ -16,3 +16,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.table-custom {
+  font-family: Arial, sans-serif;
+  font-size: 1rem; 
+}

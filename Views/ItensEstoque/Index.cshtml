@@ -1,0 +1,23 @@
+@model IEnumerable<ItemEstoque>
+
+<h1>Itens de Estoque</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ItemEstoqueId</td>
+                <td>@item.Produto.Nome</td>
+                <td>@item.Quantidade</td>
+            </tr>
+        }
+    </tbody>
+</table>
