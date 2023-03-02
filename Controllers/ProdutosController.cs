@@ -122,6 +122,18 @@ namespace estoqueMVC2.Controllers
         }
 
 
+        // POST: Produtos/Excluir/{id}, assincrono
+        [HttpPost("Excluir/{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Excluir(int id)
+        {
+            var produto = await _context.Produtos.FindAsync(id);
+            _context.Produtos.Remove(produto);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
