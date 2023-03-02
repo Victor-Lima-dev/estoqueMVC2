@@ -33,8 +33,8 @@ namespace estoqueMVC2.Controllers
         [HttpGet("Cadastrar")]
         public async Task<IActionResult> Cadastrar()
         {
-                ViewData["Categorias"] = new List<string> { "Alimento", "Bebida", "Higiene", "Limpeza", "Teste" };
-             return View();
+            ViewData["Categorias"] = new List<string> { "Alimento", "Bebida", "Higiene", "Limpeza", "Teste" };
+            return View();
         }
 
         // POST: Produtos/Cadastrar, assincrono
@@ -42,7 +42,7 @@ namespace estoqueMVC2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Cadastrar(Produto produto)
         {
-           //verifica se o produto é ja existe
+            //verifica se o produto é ja existe
             if (ModelState.IsValid)
             {
                 var produtoExiste = await _context.Produtos.FirstOrDefaultAsync(p => p.Nome == produto.Nome);
@@ -62,7 +62,65 @@ namespace estoqueMVC2.Controllers
 
             return View(produto);
         }
-      
+
+
+        // GET: Produtos/Detalhes/{id}, assincrono
+        [HttpGet("Detalhes/{id}")]
+        public async Task<IActionResult> Detalhes(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var produto = await _context.Produtos
+                .FirstOrDefaultAsync(m => m.ProdutoId == id);
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            return View(produto);
+        }
+
+
+        // GET: Produtos/Editar/{id}, assincrono
+        [HttpGet("Editar/{id}")]
+        public async Task<IActionResult> Editar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var produto = await _context.Produtos.FindAsync(id);
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+               var categorias = new List<string> { "Alimento", "Bebida", "Higiene", "Limpeza", "Teste" };
+    ViewData["Categorias"] = categorias;
+            return View("Editar",produto);
+        }
+
+        // POST: Produtos/Editar/{id}, assincrono
+        [HttpPost("Editar/{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditarT(int id, Produto produto)
+        {
+            if (id != produto.ProdutoId)
+            {
+                return NotFound();
+            }
+
+            _context.Update(produto);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

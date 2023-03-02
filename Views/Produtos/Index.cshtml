@@ -18,6 +18,7 @@
                 <td>@produto.Descricao</td>
                 <td>@produto.Preco</td>
                 <td>@produto.Categoria</td>
+                <td><a asp-action="Detalhes" asp-route-id="@produto.ProdutoId">Detalhes</a></td>
             </tr>
         }
     </tbody>
