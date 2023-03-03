@@ -1,24 +1,39 @@
 @model IEnumerable<ItemEstoque>
 
-<h1>Itens de Estoque</h1>
+<div class="container-fluid">
+    <h1>Itens de Estoque</h1>
+    
+    <div class="row">
+        <div class="col-md-12 text-center mb-3">
+            <a asp-action="Cadastrar" class="btn btn-primary">Cadastrar Item de Estoque</a>
+        </div>
+    </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Produto</th>
-            <th>Quantidade</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>@item.ItemEstoqueId</td>
-                <td>@item.Produto.Nome</td>
-                <td>@item.Quantidade</td>
-                <td><a asp-action="Editar" asp-route-id="@item.ItemEstoqueId">Editar</a></td>
+                <th>ID</th>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Opções</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ItemEstoqueId</td>
+                    <td>@item.Produto.Nome</td>
+                    <td>@item.Quantidade</td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-action="Editar" asp-route-id="@item.ItemEstoqueId" class="btn btn-warning">Editar</a>
+                            <a asp-action="Detalhes" asp-route-id="@item.ItemEstoqueId" class="btn btn-danger">Excluir</a>
+                            <a asp-action="Detalhes" asp-route-id="@item.ItemEstoqueId" class="btn btn-primary">Detalhes</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

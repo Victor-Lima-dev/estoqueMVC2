@@ -128,6 +128,9 @@ namespace estoqueMVC2.Controllers
         public async Task<IActionResult> Excluir(int id)
         {
             var produto = await _context.Produtos.FindAsync(id);
+            //apaga o itemEstoque que possui o produto
+            var itemEstoque = await _context.ItensEstoque.FirstOrDefaultAsync(i => i.ProdutoId == id);
+            _context.ItensEstoque.Remove(itemEstoque);
             _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

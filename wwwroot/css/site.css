@@ -1,23 +1,81 @@
+/* Font size */
 html {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 16px !important;
   }
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Body margin */
 body {
-  margin-bottom: 60px;
+  margin-bottom: 60px !important;
 }
 
+/* Table style */
 .table-custom {
-  font-family: Arial, sans-serif;
-  font-size: 1rem; 
+  font-family: Arial, sans-serif !important;
+  font-size: 1rem !important;
+}
+
+/* Header style */
+.navbar {
+  background-color: #F8F9FA !important;
+  border-color: #F8F9FA !important;
+}
+
+.navbar-brand {
+  color: #007BFF !important;
+  font-weight: bold !important;
+}
+
+.nav-link {
+  color: #6C757D !important;
+}
+
+.nav-link:hover {
+  color: #007BFF !important;
+}
+
+/* Footer style */
+.footer {
+  background-color: #F8F9FA !important;
+  border-color: #F8F9FA !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  text-align: center !important;
+}
+
+.footer a {
+  color: #6C757D !important;
+}
+
+.footer a:hover {
+  color: #007BFF !important;
+}
+
+/* Estilos para textos de destaque */
+.texto-destaque {
+  color: #5b3e1e !important;
+  font-weight: bold !important;
+}
+
+/* Estilos para textos normais */
+.texto-normal {
+  color: #556b2f !important;
+}
+
+/* Estilos para botões */
+.btn-custom {
+  background-color: #a0522d !important;
+  border-color: #a0522d !important;
+  color: #fff !important;
+}
+
+.btn-custom:hover {
+  background-color: #cd853f !important;
+  border-color: #cd853f !important;
+  color: #fff !important;
 }

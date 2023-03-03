@@ -1,0 +1,27 @@
+@model ProdutoItemEstoqueViewModel
+
+<h1>Produtos em Estoque</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Quantidade em Estoque</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var produto in Model.Produtos)
+        {
+            <tr>
+                <td>@produto.Nome</td>
+                <td>@Model.ItensEstoque.Where(i => i.ProdutoId == produto.ProdutoId).Sum(i => i.Quantidade)</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total de Itens em Estoque:</td>
+            <td>@ViewBag.TotalItensEstoque</td>
+        </tr>
+    </tfoot>
+</table>

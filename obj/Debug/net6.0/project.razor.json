@@ -18419,6 +18419,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\Views\\Estoques\\Index.cshtml",
+      "TargetPath": "Views\\Estoques\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\Views\\Produtos\\Cadastrar.cshtml",
       "TargetPath": "Views\\Produtos\\Cadastrar.cshtml",
       "FileKind": "mvc"
