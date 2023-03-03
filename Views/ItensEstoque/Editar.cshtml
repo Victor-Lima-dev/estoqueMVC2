@@ -1,0 +1,22 @@
+@model ItemEstoque
+
+<h1>Editar Item de Estoque</h1>
+
+<form asp-action="EditarT" asp-route-id="@Model.ItemEstoqueId" method="post">
+    <input type="hidden" asp-for="ItemEstoqueId" />
+    <input type="hidden" asp-for="ProdutoId" />
+    <input type="hidden" asp-for="EstoqueId" />
+    <div class="form-group">
+        <p>
+            <strong>Produto:</strong>
+            @Model.Produto.Nome
+        </p>
+    <div class="form-group">
+        <label asp-for="Quantidade" class="control-label"></label>
+        <input asp-for="Quantidade" class="form-control" />
+        <span asp-validation-for="Quantidade" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Salvar" class="btn btn-primary" />
+    </div>
+</form>

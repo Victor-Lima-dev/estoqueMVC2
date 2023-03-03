@@ -17,6 +17,7 @@
                 <td>@item.ItemEstoqueId</td>
                 <td>@item.Produto.Nome</td>
                 <td>@item.Quantidade</td>
+                <td><a asp-action="Editar" asp-route-id="@item.ItemEstoqueId">Editar</a></td>
             </tr>
         }
     </tbody>

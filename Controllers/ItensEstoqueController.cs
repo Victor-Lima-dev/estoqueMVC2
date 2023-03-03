@@ -57,12 +57,12 @@ namespace estoqueMVC2.Controllers
         [HttpGet("Cadastrar")]
         public async Task<IActionResult> Cadastrar()
         {
-           var produtos = await _context.Produtos.ToListAsync();
+            var produtos = await _context.Produtos.ToListAsync();
             return View(produtos);
         }
 
         // POST: ItensEstoque/Cadastrar, assincrono
-        [HttpPost]        
+        [HttpPost]
         [ValidateAntiForgeryToken]
         //vamos passar o id do produto e a quantidade
         public async Task<IActionResult> CadastrarT(int produtoId, int quantidade)
@@ -70,7 +70,7 @@ namespace estoqueMVC2.Controllers
             //verifica se ja existe um item de estoque com o mesmo produto, se nao existir, cria um novo, se existir, atualiza a quantidade, verificando se a quantidade é maior que zero
             if (ModelState.IsValid)
             {
-                   var estoque = await _context.Estoques.FirstOrDefaultAsync(c => c.EstoqueId == 1);
+                var estoque = await _context.Estoques.FirstOrDefaultAsync(c => c.EstoqueId == 1);
 
                 var itemEstoqueExiste = await _context.ItensEstoque.FirstOrDefaultAsync(p => p.ProdutoId == produtoId);
 
@@ -99,6 +99,37 @@ namespace estoqueMVC2.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        // GET: ItensEstoque/Editar/5, assincrono
+        [HttpGet("Editar/{id}")]
+        public async Task<IActionResult> Editar(int id)
+        {
+            var itemEstoque = await _context.ItensEstoque.FindAsync(id);
+            //adicionar o produto ao item de estoque
+            itemEstoque.Produto = await _context.Produtos.FirstOrDefaultAsync(p => p.ProdutoId == itemEstoque.ProdutoId);
+            if (itemEstoque == null)
+            {
+                return NotFound();
+            }
+            return View(itemEstoque);
+        }
+
+        // POST: ItensEstoque/Editar/5, assincrono
+        [HttpPost("Editar/{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditarT(int id, ItemEstoque itemEstoque)
+        {
+            if (id != itemEstoque.ItemEstoqueId)
+            {
+                return NotFound();
+            }
+
+            
+                _context.Update(itemEstoque);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
