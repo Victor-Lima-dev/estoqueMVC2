@@ -1,0 +1,27 @@
+@model ItemEstoque
+
+<h1>Detalhes do Item de Estoque</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Produto.Nome)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Produto.Nome)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Quantidade)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Quantidade)
+    </dd>
+</dl>
+
+<div class="form-group">
+    <a asp-action="Editar" asp-route-id="@Model.ItemEstoqueId" class="btn btn-primary">Editar</a>
+    <form asp-action="Deletar" asp-route-id="@Model.ItemEstoqueId" method="post" class="btn btn-danger">
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+    </form>
+    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+</div>

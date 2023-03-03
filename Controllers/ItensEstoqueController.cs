@@ -131,6 +131,32 @@ namespace estoqueMVC2.Controllers
             
         }
 
+        // GET: ItensEstoque/Detalhes/5, assincrono
+        [HttpGet("Detalhes/{id}")]
+        public async Task<IActionResult> Detalhes(int id)
+        {
+            var itemEstoque = await _context.ItensEstoque.FindAsync(id);
+            //adicionar o produto ao item de estoque
+            itemEstoque.Produto = await _context.Produtos.FirstOrDefaultAsync(p => p.ProdutoId == itemEstoque.ProdutoId);
+            if (itemEstoque == null)
+            {
+                return NotFound();
+            }
+
+            return View(itemEstoque);
+        }
+
+        //POST: ItensEstoque/Deletar/5, assincrono
+        [HttpPost("Deletar/{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Deletar(int id)
+        {
+            var itemEstoque = await _context.ItensEstoque.FindAsync(id);
+            _context.ItensEstoque.Remove(itemEstoque);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
