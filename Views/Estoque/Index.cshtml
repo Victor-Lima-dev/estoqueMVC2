@@ -1,27 +1,55 @@
-@model ProdutoItemEstoqueViewModel
+@model estoqueMVC2.Models.ProdutoItemEstoqueViewModel
+@{
+    ViewData["Title"] = "Produtos em Estoque";
+}
 
-<h1>Produtos em Estoque</h1>
+<div class="container">
+    <h1>Produtos em Estoque</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Produto</th>
-            <th>Quantidade em Estoque</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var produto in Model.Produtos)
-        {
+    <form  asp-controller="Estoque" asp-action="Pesquisar"   method="get">
+        <div class="form-group">
+            <label for="nome">Pesquisar por nome:</label>
+            <div class="input-group mb-3">
+                <input type="text" name="nome"  class="form-control" value="@ViewData["nome"]" placeholder="Digite o nome do produto">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped table-bordered">
+        <thead>
             <tr>
-                <td>@produto.Nome</td>
-                <td>@Model.ItensEstoque.Where(i => i.ProdutoId == produto.ProdutoId).Sum(i => i.Quantidade)</td>
+                <th scope="col">Produto</th>
+                <th scope="col">Quantidade em Estoque</th>
+                <th scope="col">Preço Unitário</th>
+                <th scope="col">Preço Total</th>
             </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <td>Total de Itens em Estoque:</td>
-            <td>@ViewBag.TotalItensEstoque</td>
-        </tr>
-    </tfoot>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var produto in Model.Produtos)
+            {
+                var itensEstoque = Model.ItensEstoque.Where(i => i.ProdutoId == produto.ProdutoId).ToList();
+                var quantidadeEmEstoque = itensEstoque.Sum(i => i.Quantidade);
+                var precoUnitario = produto.Preco.ToString("C");
+                var precoTotal = (quantidadeEmEstoque * produto.Preco).ToString("C");
+
+                <tr>
+                    <td>@produto.Nome</td>
+                    <td>@quantidadeEmEstoque</td>
+                    <td>@precoUnitario</td>
+                    <td>@precoTotal</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total de Itens em Estoque:</td>
+                <td>@ViewBag.TotalItensEstoque</td>
+                <td></td>
+                <td>@Model.ItensEstoque.Sum(i => i.Quantidade * i.Produto.Preco).ToString("C")</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

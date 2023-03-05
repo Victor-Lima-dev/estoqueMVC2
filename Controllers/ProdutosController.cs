@@ -48,7 +48,7 @@ namespace estoqueMVC2.Controllers
                 var produtoExiste = await _context.Produtos.FirstOrDefaultAsync(p => p.Nome == produto.Nome);
 
 
-                if (produtoExiste == null && produto.Preco >= 0)
+                if (produtoExiste == null && produto.Preco > 0)
                 {
                     _context.Add(produto);
                     await _context.SaveChangesAsync();
@@ -99,9 +99,9 @@ namespace estoqueMVC2.Controllers
                 return NotFound();
             }
 
-               var categorias = new List<string> { "Alimento", "Bebida", "Higiene", "Limpeza", "Teste" };
-    ViewData["Categorias"] = categorias;
-            return View("Editar",produto);
+            var categorias = new List<string> { "Alimento", "Bebida", "Higiene", "Limpeza", "Teste" };
+            ViewData["Categorias"] = categorias;
+            return View("Editar", produto);
         }
 
         // POST: Produtos/Editar/{id}, assincrono
