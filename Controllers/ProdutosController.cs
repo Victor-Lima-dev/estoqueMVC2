@@ -136,6 +136,44 @@ namespace estoqueMVC2.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //pesquisar produto
+        [HttpGet("Pesquisar")]
+        public async Task<IActionResult> Pesquisar(string nome)
+        {
+            var produtos = await _context.Produtos.Where(p => p.Nome.Contains(nome)).ToListAsync();
+            return View("Index", produtos);
+        }
+
+        //pesquisar por categoria
+        [HttpGet("PesquisarPorCategoria")]
+        public async Task<IActionResult> PesquisarPorCategoria(string categoria)
+        {
+            var produtos = await _context.Produtos.Where(p => p.Categoria.Contains(categoria)).ToListAsync();
+            return View("Index", produtos);
+        }
+
+        //pesquisar por maior e menor preço
+        [HttpGet("PesquisarPorPreco")]
+        public async Task<IActionResult> PesquisarPorPreco(string valor)
+        {
+           if(valor == "maior")
+            {
+                //filtrar do maior para o menor
+                var produtos = await _context.Produtos.OrderByDescending(p => p.Preco).ToListAsync();
+                
+                return View("Index", produtos);
+            }
+            else
+            {
+                //filtrar do menor para o maior
+                var produtos = await _context.Produtos.OrderBy(p => p.Preco).ToListAsync();              
+                return View("Index", produtos);
+            }
+        }
+        
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
