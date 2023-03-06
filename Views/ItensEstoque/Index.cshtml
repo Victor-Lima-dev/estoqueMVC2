@@ -1,6 +1,29 @@
 @model IEnumerable<ItemEstoque>
 
 <div class="container-fluid">
+
+
+<form asp-action="Pesquisar" method="get">
+    <div class="form-group">
+        <label for="nome">Nome do Produto:</label>
+        <input type="text" class="form-control" id="nome" name="nome"value=@ViewData["nome"]  />
+    </div>
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     <h1>Itens de Estoque</h1>
     
     <div class="row">

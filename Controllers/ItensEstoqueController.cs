@@ -124,11 +124,11 @@ namespace estoqueMVC2.Controllers
                 return NotFound();
             }
 
-            
-                _context.Update(itemEstoque);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            
+
+            _context.Update(itemEstoque);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: ItensEstoque/Detalhes/5, assincrono
@@ -156,6 +156,78 @@ namespace estoqueMVC2.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        //pesquisar por nome do produto
+        [HttpGet("Pesquisar")]
+        public async Task<IActionResult> Pesquisar(string nome)
+        {
+            var produtos = await _context.Produtos.ToListAsync();
+            //procurar quais produtos tem o nome pesquisado
+            //produtos = produtos.Where(p => p.Nome.Contains(nome)).ToList();
+            var ItensEstoque = await _context.ItensEstoque.ToListAsync();
+
+            //vincular os produtos pesquisados ao item de estoque
+            foreach (var item in ItensEstoque)
+            {
+                item.Produto = produtos.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
+            }
+
+            //procurar o item de estoque que tem o produto pesquisado usando o contains
+            ItensEstoque = ItensEstoque.Where(p => p.Produto.Nome.Contains(nome)).ToList();
+
+
+            var teste = 0;
+            return View("Index", ItensEstoque);
+        }
+
+        //pesquisar por categoria
+        [HttpGet("PesquisarCategoria")]
+        public async Task<IActionResult> PesquisarCategoria(string categoria)
+        {
+            var produtos = await _context.Produtos.ToListAsync();
+            var ItensEstoque = await _context.ItensEstoque.ToListAsync();
+            //vincular o produto ao item de estoque
+            foreach (var item in ItensEstoque)
+            {
+                item.Produto = await _context.Produtos.FirstOrDefaultAsync(p => p.ProdutoId == item.ProdutoId);
+            }
+            
+            ItensEstoque = ItensEstoque.Where(p => p.Produto.Categoria.Contains(categoria)).ToList();
+
+
+            return View("Index", ItensEstoque);
+        }
+
+        //pesquisar por quantidade, maior e menor
+        [HttpGet("PesquisarQuantidade")]
+        public async Task<IActionResult> PesquisarQuantidade(string valor)
+        {
+            var produtos = await _context.Produtos.ToListAsync();
+            var ItensEstoque = await _context.ItensEstoque.ToListAsync();
+
+            if (valor == "Maior")
+            {
+                ItensEstoque = ItensEstoque.OrderByDescending(p => p.Quantidade).ToList();
+                //vincula os produtos aos itens de estoque
+                foreach (var item in ItensEstoque)
+                {
+                    item.Produto = await _context.Produtos.FirstOrDefaultAsync(p => p.ProdutoId == item.ProdutoId);
+                }
+                return View("Index", ItensEstoque);
+            }
+            else
+            {
+                ItensEstoque = ItensEstoque.OrderBy(p => p.Quantidade).ToList();
+                //vincula os produtos aos itens de estoque
+                foreach (var item in ItensEstoque)
+                {
+                    item.Produto = await _context.Produtos.FirstOrDefaultAsync(p => p.ProdutoId == item.ProdutoId);
+                }
+                return View("Index", ItensEstoque);
+            }
+        }
+
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
