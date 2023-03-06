@@ -49,6 +49,9 @@ namespace estoqueMVC2.Controllers
             {
                 item.Produto = await _context.Produtos.FirstOrDefaultAsync(p => p.ProdutoId == item.ProdutoId);
             }
+            
+            var categorias = new List<string> { "Alimento", "Bebida", "Higiene", "Limpeza", "Teste" };
+            ViewData["Categorias"] = categorias;
 
             return View(ItensEstoque);
         }
@@ -176,7 +179,7 @@ namespace estoqueMVC2.Controllers
             ItensEstoque = ItensEstoque.Where(p => p.Produto.Nome.Contains(nome)).ToList();
 
 
-            var teste = 0;
+            
             return View("Index", ItensEstoque);
         }
 
@@ -191,10 +194,13 @@ namespace estoqueMVC2.Controllers
             {
                 item.Produto = await _context.Produtos.FirstOrDefaultAsync(p => p.ProdutoId == item.ProdutoId);
             }
-            
+
             ItensEstoque = ItensEstoque.Where(p => p.Produto.Categoria.Contains(categoria)).ToList();
 
-
+            //viewData com as categorias para o select
+            var categorias = new List<string> { "Alimento", "Bebida", "Higiene", "Limpeza", "Teste" };
+            ViewData["Categorias"] = categorias;
+            var teste = 0;
             return View("Index", ItensEstoque);
         }
 

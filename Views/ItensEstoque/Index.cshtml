@@ -2,6 +2,8 @@
 
 <div class="container-fluid">
 
+@{var categorias = new List<string> { "Alimento", "Bebida", "Higiene", "Limpeza", "Teste" };
+            ViewData["Categorias"] = categorias;}
 
 <form asp-action="Pesquisar" method="get">
     <div class="form-group">
@@ -11,18 +13,27 @@
     <button type="submit" class="btn btn-primary">Pesquisar</button>
 </form>
 
+<form asp-action="PesquisarCategoria" method="get">
+    <label>Pesquisar por categoria:</label>
+    <select name="categoria">
+        <option value="">Todos</option>
+        @foreach (var cat in ViewData["Categorias"] as List<string>)
+{
+    <option value="@cat">@cat</option>
+}
+    </select>
+    <button type="submit">Pesquisar</button>
+</form>
 
 
-
-
-
-
-
-
-
-
-
-
+<form asp-action="PesquisarQuantidade" method="get">
+    <label>Pesquisar por quantidade:</label>
+    <input type="radio" name="valor" value="Maior" id="maior" />
+    <label for="maior">Maior</label>
+    <input type="radio" name="valor" value="Menor" id="menor" />
+    <label for="menor">Menor</label>
+    <button type="submit">Pesquisar</button>
+</form>
     
     <h1>Itens de Estoque</h1>
     
