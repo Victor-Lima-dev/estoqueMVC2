@@ -89,6 +89,20 @@ namespace estoqueMVC2.Controllers
         }
 
 
+        //retira de itens do estoque
+        [HttpPost]
+        public IActionResult Retirar(int produtoId, int quantidade)
+        {
+            var itemEstoque = _context.ItensEstoque.FirstOrDefault(item => item.ProdutoId == produtoId);
+            if (itemEstoque != null)
+            {
+                itemEstoque.Quantidade -= quantidade;
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+        
 
 
 

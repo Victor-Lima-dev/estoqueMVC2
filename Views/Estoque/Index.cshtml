@@ -35,6 +35,19 @@
     </div>
 </form>
 
+<form  asp-controller="Estoque" asp-action="Retirar" method="post">
+    <label>Produto:</label>
+    <select name="produtoId">
+        @foreach (var item in Model.ItensEstoque)
+        {
+            <option value="@item.ProdutoId">@item.Produto.Nome</option>
+        }
+    </select>
+    <label>Quantidade:</label>
+    <input type="number" name="quantidade" value="@ViewData["quantidade"]" min="1" required>
+    <button type="submit">Retirar</button>
+</form>
+
     <table class="table table-striped table-bordered">
         <thead>
             <tr>

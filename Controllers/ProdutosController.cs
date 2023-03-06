@@ -22,6 +22,7 @@ namespace estoqueMVC2.Controllers
             _context = context;
         }
 
+
         // GET: Produtos, assincrono
         [HttpGet]
         public async Task<IActionResult> Index()
