@@ -18399,6 +18399,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\Views\\Estoque\\Relatorios.cshtml",
+      "TargetPath": "Views\\Estoque\\Relatorios.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Vitor\\Desktop\\code\\estoqueMVC2\\Views\\Produtos\\Editar.cshtml",
       "TargetPath": "Views\\Produtos\\Editar.cshtml",
       "FileKind": "mvc"

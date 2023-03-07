@@ -1,0 +1,47 @@
+@model IEnumerable<estoqueMVC2.Models.Relatorio>
+
+<h1>Relatórios</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Data de Cadastro</th>
+            <th>Quantidade</th>
+            <th>Tipo</th>
+            <th>Itens de Estoque</th>
+            <th>Produtos</th>
+            <th>Estoque</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var relatorio in Model)
+        {
+            <tr>
+                <td>@relatorio.Nome</td>
+                <td>@relatorio.Descricao</td>
+                <td>@relatorio.DataCadastro</td>
+                <td>@relatorio.Quantidade</td>
+                <td>@relatorio.Tipo</td>
+                <td>
+                    <ul>
+                        @foreach (var itemEstoque in relatorio.ItensEstoque)
+                        {
+                            <li>@itemEstoque.Produto.Nome - @itemEstoque.Quantidade</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var produto in relatorio.Produtos)
+                        {
+                            <li>@produto.Nome</li>
+                        }
+                    </ul>
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>

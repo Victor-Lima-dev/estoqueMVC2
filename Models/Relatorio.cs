@@ -12,8 +12,10 @@ namespace estoqueMVC2.Models
         public string Descricao { get; set; }
         public DateTime DataCadastro { get; set; }
 
-        public string Tipo { get; set; }
+        public int Quantidade { get; set; }
+
         //Entrada ou Saida
+        public string Tipo { get; set; }
         //um relatorio pode ter varios itens de estoque
         public List<ItemEstoque> ItensEstoque { get; set; } = new List<ItemEstoque>();
         //um relatorio pode ter varios produtos

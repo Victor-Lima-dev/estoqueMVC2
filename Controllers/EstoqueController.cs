@@ -88,23 +88,47 @@ namespace estoqueMVC2.Controllers
             return View("Index", estoque);
         }
 
+       
+
+
 
         //retira de itens do estoque
         [HttpPost]
         public IActionResult Retirar(int produtoId, int quantidade)
         {
             var itemEstoque = _context.ItensEstoque.FirstOrDefault(item => item.ProdutoId == produtoId);
+            itemEstoque.Produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == itemEstoque.ProdutoId);
             if (itemEstoque != null && itemEstoque.Quantidade >= quantidade)
             {
                 itemEstoque.Quantidade -= quantidade;
+
+                var relatorio = new Relatorio
+                {
+                    EstoqueId = 1,
+                    Quantidade = quantidade,
+                    Nome = itemEstoque.Produto.Nome,
+                    Descricao = itemEstoque.Produto.Descricao,
+                    DataCadastro = DateTime.Now,
+                    Tipo = "Retirada"
+                };
+
+                _context.Relatorios.Add(relatorio);
+                var relatorios = _context.Relatorios.ToList();
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Relatorios");
             }
             
             return RedirectToAction("Index");
         }
         
 
+        //view de relatorios
+        [HttpGet("Relatorios")]
+        public IActionResult Relatorios()
+        {
+            var relatorios = _context.Relatorios.ToList();
+            return View(relatorios);
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

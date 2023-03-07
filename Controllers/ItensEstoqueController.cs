@@ -72,7 +72,8 @@ namespace estoqueMVC2.Controllers
         {
             //verifica se ja existe um item de estoque com o mesmo produto, se nao existir, cria um novo, se existir, atualiza a quantidade, verificando se a quantidade é maior que zero
             if (ModelState.IsValid)
-            {
+            {   
+                
                 var estoque = await _context.Estoques.FirstOrDefaultAsync(c => c.EstoqueId == 1);
 
                 var itemEstoqueExiste = await _context.ItensEstoque.FirstOrDefaultAsync(p => p.ProdutoId == produtoId);
