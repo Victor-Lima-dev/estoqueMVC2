@@ -44,8 +44,8 @@ namespace estoqueMVC2.Controllers
         public async Task<IActionResult> Cadastrar(Produto produto)
         {
             //verifica se o produto é ja existe
-            if (ModelState.IsValid)
-            {
+          
+                
                 var produtoExiste = await _context.Produtos.FirstOrDefaultAsync(p => p.Nome == produto.Nome);
 
 
@@ -59,9 +59,9 @@ namespace estoqueMVC2.Controllers
                 {
                     ModelState.AddModelError("Nome", "Produto já existe ou preço inválido!");
                 }
-            }
+           
 
-            return View(produto);
+           return RedirectToAction(nameof(Index));
         }
 
 
@@ -173,6 +173,13 @@ namespace estoqueMVC2.Controllers
         }
         
 
+        //pesquisar por validade, digitando o ano
+        [HttpGet("PesquisarPorValidade")]
+        public async Task<IActionResult> PesquisarPorValidade(int ano)
+        {
+            var produtos = await _context.Produtos.Where(p => p.DataValidade.Year == ano).ToListAsync();
+            return View("Index", produtos);
+        }
 
 
 

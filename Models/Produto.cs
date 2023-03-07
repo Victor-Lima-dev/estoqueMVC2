@@ -15,8 +15,12 @@ namespace estoqueMVC2.Models
 
         public DateTime DataCadastro { get; set; }
         public DateTime DataValidade { get; set; }
-        
 
+        //um para um com relatorio
+        public Relatorio Relatorio { get; set; }
+        public int? RelatorioId { get; set; }
+
+        //um para muitos com itemEstoque
         public List<ItemEstoque> ItensEstoque { get; set; } = new List<ItemEstoque>();
 
     }

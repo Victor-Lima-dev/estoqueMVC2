@@ -32,6 +32,15 @@
     </div>
 </form>
 
+<form asp-action="PesquisarPorValidade" method="get">
+    <div class="form-group">
+        <label>Ano de validade:</label>
+        <input type="number" name="ano" class="form-control" value="@ViewData["ano"]"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+</form>
+
+
 <form asp-action="Pesquisar" method="get">
     <div class="form-group">
         <label for="nome">Pesquisar por nome:</label>
@@ -56,6 +65,7 @@
                             <th>Descrição</th>
                             <th>Preço</th>
                             <th>Categoria</th>
+                            <th>Validade</th>
                             <th>Opções</th>
                         </tr>
                     </thead>
@@ -68,6 +78,7 @@
                                 <td>@produto.Descricao</td>
                                 <td>R$ @produto.Preco.ToString("F2")</td>
                                 <td>@produto.Categoria</td>
+                                <td>@produto.DataValidade.ToString("dd/MM/yyyy")</td>
                                 <td>
                                     <div class="btn-group">
                                         <a asp-action="Detalhes" asp-route-id="@produto.ProdutoId" class="btn btn-primary">Detalhes</a>

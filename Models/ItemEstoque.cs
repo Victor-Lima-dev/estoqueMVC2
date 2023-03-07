@@ -17,6 +17,10 @@ namespace estoqueMVC2.Models
         public int EstoqueId { get; set; }
         public Estoque Estoque { get; set; }
 
+        //relacionamento muitos para 1
+        public int? RelatorioId { get; set; }
+        public Relatorio Relatorio { get; set; }
+
 
 
     }

@@ -11,5 +11,8 @@ namespace estoqueMVC2.Models
         public List<Produto> Produtos { get; set; }
         //lista de itens de estoque
         public List<ItemEstoque> ItensEstoque { get; set; }
+
+        //lista de relatorios
+        public List<Relatorio> Relatorios { get; set; }
     }
 }
